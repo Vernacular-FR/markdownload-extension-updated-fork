@@ -37,6 +37,30 @@ async function downloadMarkdown(markdown, title, tabId, imageList = {}, mdClipsF
     catch (err) { 
       console.error("Download failed", err); 
     }
+  } else {
+    try {
+      await ensureScripts(tabId);
+      const filename = mdClipsFolder + generateValidFileName(title, options.disallowedChars) + ".md";
+      await browser.scripting.executeScript({
+        target: { tabId },
+        func: (filename, content) => {
+          const decoded = atob(content);
+          const dataUri = `data:text/markdown;base64,${btoa(decoded)}`;
+          const link = document.createElement('a');
+          link.download = filename;
+          link.href = dataUri;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        },
+        args: [filename, base64EncodeUnicode(markdown)]
+      });
+    }
+    catch (error) {
+      // This could happen if the extension is not allowed to run code in
+      // the page, for example if the tab is a privileged page.
+      console.error("Failed to execute script: " + error);
+    };
   }
 }
 

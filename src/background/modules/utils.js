@@ -33,3 +33,49 @@ function base64EncodeUnicode(str) {
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text);
 }
+
+// Validate and resolve URI
+function validateUri(href, baseURI) {
+  try {
+    new URL(href);
+    return href;
+  } catch (e) {
+    // Not a valid absolute URL, try to resolve relative to base
+    try {
+      return new URL(href, baseURI).href;
+    } catch (e2) {
+      return href;
+    }
+  }
+}
+
+// Find original image URL
+function findOriginalImageUrl(node) {
+  const src = node.getAttribute('src');
+  const srcset = node.getAttribute('srcset');
+  
+  if (srcset) {
+    const sources = srcset.split(',').map(s => s.trim().split(' ')[0]);
+    return sources[0];
+  }
+  
+  return src;
+}
+
+// Get image filename
+function getImageFilename(src, options = {}, prependFilePath = true) {
+  const slashPos = src.lastIndexOf('/');
+  const queryPos = src.indexOf('?');
+  let filename = src.substring(slashPos + 1, queryPos > 0 ? queryPos : src.length);
+  
+  if (prependFilePath && options.imagePrefix) {
+    filename = options.imagePrefix + filename;
+  }
+  
+  return filename;
+}
+
+// Clean attribute value
+function cleanAttribute(attr) {
+  return attr ? attr.replace(/(\r\n|\n|\r)/gm, '') : '';
+}
