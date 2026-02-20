@@ -1,0 +1,6 @@
+web-ext-artifacts
+dist
+xcode/MarkDownload - Markdown Web Clipper/MarkDownload - Markdown Web Clipper.xcodeproj/project.xcworkspace
+xcode/MarkDownload - Markdown Web Clipper/MarkDownload - Markdown Web Clipper.xcodeproj/xcuserdata
+.DS_Store
+node_modules

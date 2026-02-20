@@ -1,0 +1,113 @@
+{
+  "manifest_version": 3,
+  "name": "MarkSnip - Markdown Web Clipper",
+  "version": "4.0.1",
+  "author": "Dhruv Parikh",
+  "description": "A web clipper to download articles in markdown format. Turndown & Readability are used as core libraries.",
+  "icons": {
+    "16": "icons/favicon-16x16.png",
+    "32": "icons/favicon-32x32.png",
+    "48": "icons/favicon-48x48.png",
+    "128": "icons/appicon-128x128.png",
+    "192": "icons/favicon-192x192.png",
+    "512": "icons/favicon-512x512.png"
+  },
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "storage",
+    "contextMenus",
+    "clipboardWrite",
+    "scripting",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "MarkSnip",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/favicon-16x16.png",
+      "32": "icons/favicon-32x32.png",
+      "48": "icons/favicon-48x48.png",
+      "128": "icons/appicon-128x128.png"
+    }
+  },
+  "background": {
+    "scripts": [
+      "browser-polyfill.min.js",
+      "background/libs/moment.min.js",
+      "background/libs/apache-mime-types.js",
+      "background/libs/turndown.js",
+      "background/libs/turndown-plugin-gfm.js",
+      "background/libs/Readability.js",
+      "shared/default-options.js",
+      "shared/context-menus.js",
+      "background/modules/utils.js",
+      "background/modules/images.js",
+      "background/modules/title.js",
+      "background/modules/converter.js",
+      "background/modules/download.js",
+      "background/modules/article.js",
+      "background/modules/menus.js",
+      "background/modules/handlers.js",
+      "background/background.js"
+    ],
+    "service_worker": "service-worker.js"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": false,
+    "open_in_tab": false
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+M"
+      }
+    },
+    "download_tab_as_markdown": {
+      "suggested_key": {
+        "default": "Alt+Shift+D"
+      },
+      "description": "Save current tab as Markdown"
+    },
+    "copy_tab_as_markdown": {
+      "suggested_key": {
+        "default": "Alt+Shift+C"
+      },
+      "description": "Copy current tab as Markdown to the clipboard"
+    },
+    "copy_selection_as_markdown": {
+      "description": "Copy current selection as Markdown to the clipboard"
+    },
+    "copy_tab_as_markdown_link": {
+      "suggested_key": {
+        "default": "Alt+Shift+L"
+      },
+      "description": "Copy current tab URL as Markdown link to the clipboard"
+    },
+    "copy_selected_tab_as_markdown_link": {
+      "description": "Copy selected tabs URL as Markdown link to the clipboard"
+    },
+    "copy_selection_to_obsidian": {
+      "description": "Copy current selection as Markdown to Obsidian"
+    },
+    "copy_tab_to_obsidian": {
+      "description": "Copy current tab as Markdown to Obsidian"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["contentScript/pageContext.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{1c5e4c6f-5530-49a3-b216-31ce7d744db0}",
+      "strict_min_version": "65.0"
+    }
+  }
+}

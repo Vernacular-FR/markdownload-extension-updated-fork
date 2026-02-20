@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../highlight.min.js"></script>
+  <script src="../browser-polyfill.min.js"></script>
+  <script src="../background/moment.min.js"></script>
+  <script src="../background/apache-mime-types.js"></script>
+  <script src="../background/turndown.js"></script>
+  <script src="../background/turndown-plugin-gfm.js"></script>
+  <script src="../background/Readability.js"></script>
+  <script src="../shared/default-options.js"></script>
+  <script src="offscreen.js"></script>
+</head>
+<body>
+  <!-- Elements for clipboard operations -->
+  <div id="clipboard-container" style="position:absolute; left:-9999px;">
+    <textarea id="clipboard-text"></textarea>
+  </div>
+</body>
+</html>
