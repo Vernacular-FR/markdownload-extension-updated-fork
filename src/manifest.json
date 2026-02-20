@@ -35,7 +35,25 @@
     }
   },
   "background": {
-    "service_worker": "service-worker.js"
+    "scripts": [
+      "browser-polyfill.min.js",
+      "background/libs/moment.min.js",
+      "background/libs/apache-mime-types.js",
+      "background/libs/turndown.js",
+      "background/libs/turndown-plugin-gfm.js",
+      "background/libs/Readability.js",
+      "shared/default-options.js",
+      "shared/context-menus.js",
+      "background/modules/utils.js",
+      "background/modules/images.js",
+      "background/modules/title.js",
+      "background/modules/converter.js",
+      "background/modules/download.js",
+      "background/modules/article.js",
+      "background/modules/menus.js",
+      "background/modules/handlers.js",
+      "background/background.js"
+    ]
   },
   "options_ui": {
     "page": "options/options.html",
